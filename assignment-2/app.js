@@ -2,14 +2,14 @@ const app = Vue.createApp({
     data() {
         return{
             courseGoalA: 'Hello Vue',
-            courseGoalB: 'Hello Vue',
+            courseGoalB: '<h1>Hello React</h1>',
             vueLink: 'https://vuejs.org'
         }
     },
     methods: {
         randomCourse() {
             const random = Math.random();
-            if(random % 2 === 0) return this.courseGoalA;
+            if(random < 0.5) return this.courseGoalA;
             return this.courseGoalB;
         }
     }

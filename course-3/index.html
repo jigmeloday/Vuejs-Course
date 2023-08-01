@@ -24,6 +24,8 @@
       <button v-on:click="value++">Add</button>
       <button v-on:click="value--">Remove</button>
       <p>Value: {{ value }}</p>
+      <input type="text" v-on:input="setName" />
+      <p>Your Name {{name}}</p>
     </section>
   </body>
 </html>

@@ -26,6 +26,10 @@
       <p>Value: {{ value }}</p>
       <input type="text" v-on:input="setName" />
       <p>Your Name {{name}}</p>
+      <form v-on:submit.prevent="submit">
+        <input type="text" />
+        <button>Sign Up</button>
+      </form>
     </section>
   </body>
 </html>

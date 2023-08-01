@@ -10,6 +10,9 @@ const app = Vue.createApp({
         setName(value) {
             this.name = value.target.value
         },
+        submit() {
+            alert('good job')
+        },
         add(number) {
             this.counter += number
         },

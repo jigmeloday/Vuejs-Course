@@ -3,7 +3,8 @@ const app = Vue.createApp({
         return{
             counter: 0,
             value: 0,
-            name: ''
+            name: '',
+            valueInput: ''
         }
     },
     methods: {
@@ -18,7 +19,10 @@ const app = Vue.createApp({
         },
         sub(number) {
             this.counter -= number
-        }
+        },
+        reset() {
+            this.valueInput = ''
+        },
     }
 })
 app.mount('#events')

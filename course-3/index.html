@@ -32,6 +32,11 @@
         <input type="text" />
         <button>Sign Up</button>
       </form>
+      <div style="margin-top: 30px">
+        <input type="text" v-model="valueInput" />
+        <p>Your Name {{valueInput}}</p>
+        <button v-on:click="reset">Reset</button>
+      </div>
     </section>
   </body>
 </html>

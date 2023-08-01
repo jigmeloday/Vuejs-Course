@@ -6,12 +6,15 @@ const app = Vue.createApp({
             vueLink: 'https://vuejs.org'
         }
     },
-    methods: {
+    computed: {
         randomCourse() {
             const random = Math.random();
             if(random < 0.5) return this.courseGoalA;
             return this.courseGoalB;
         }
+    },
+    methods: {
+    
     }
 })
 

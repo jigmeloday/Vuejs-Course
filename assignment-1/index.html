@@ -10,13 +10,16 @@
     <div id="app">
       <div>
         <label for="goal">Goal</label>
-        <input type="text" id="goal" />
-        <button>Add Goal</button>
+        <input type="text" id="goal" v-model='inputValue' />
+        <button v-on:click='addList'>Add Goal</button>
       </div>
       <ul>
-        <li>Test</li>
+        <li v-for='goal in goals'>
+            {{ goal }}
+        </li>
       </ul>
     </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

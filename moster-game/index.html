@@ -20,24 +20,40 @@
       <section id="monster" class="container">
         <h2>Monster Health</h2>
         <div class="healthbar">
-          <div class="healthbar__value"></div>
+          <div class="healthbar__value" :style="{width: mosterHealthBar}"></div>
         </div>
       </section>
       <section id="player" class="container">
         <h2>Your Health</h2>
         <div class="healthbar">
-          <div class="healthbar__value"></div>
+          <div class="healthbar__value" :style="{width:playerHealthBar}"></div>
         </div>
       </section>
-      <section id="controls">
-        <button>ATTACK</button>
-        <button>SPECIAL ATTACK</button>
-        <button>HEAL</button>
-        <button>SURRENDER</button>
+      <section class="container" v-if="winner">
+        <h3>Game Over</h3>
+        <h3 v-if="winner === 'moster' ">You lost!</h3>
+        <h3 v-if="winner === 'player'">You won!</h3>
+        <h3 v-if="winner === 'draw'">It's a draw!</h3>
+        <button @click="reset()">Start New Game</button>
+      </section>
+      <section id="controls" v-if="!winner">
+        <button @click="attackMoster()">ATTACK</button>
+        <button :disabled="eligibleForSpecailAttack" @click="specialAttack()">
+          SPECIAL ATTACK
+        </button>
+        <button @click="healPlayer()">HEAL</button>
+        <button @click="surrender">SURRENDER</button>
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <ul v-if="logMessage.length">
+          <li v-for="message in logMessage">
+            <span
+              >{{message.actionBy }} {{message.actionType }}
+              {{message.actionValue}}</span
+            >
+          </li>
+        </ul>
       </section>
     </div>
   </body>

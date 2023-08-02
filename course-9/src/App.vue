@@ -2,7 +2,7 @@
     <section>
         <h2>My Friends</h2>
         <ul>
-           <friend-contact v-for="friend in friends" :key="friend.id" :friend='friend' ></friend-contact>
+           <friend-contact v-for="friend in friends" :key="friend.id" :friend='friend' @follow-user='followUserStatus'></friend-contact>
         </ul>
     </section>
 </template>
@@ -17,21 +17,34 @@ export default{
                     id: '1',
                     name: 'pema',
                     phone: '12121212',
-                    email: 'pema@gmail.com'
+                    email: 'pema@gmail.com',
+                    isFavorite: true,
+                    follow: false,
+
                 },
                 {
                     id: '2',
                     name: 'sema',
                     phone: '12121212',
-                    email: 'sema@gmail.com'
+                    email: 'sema@gmail.com',
+                    isFavorite: false,
+                    follow: false
                 },
                 {
                     id: '3',
                     name: 'dema',
                     phone: '12121212',
-                    email: 'dema@gmail.com'
+                    email: 'dema@gmail.com',
+                    isFavorite: true,
+                    follow: false
                 }
             ]
+        }
+    }, 
+    methods: {
+        followUserStatus(id) {
+           const changeData = this.friends.find(friend => friend.id === id);
+           changeData.follow = !changeData.follow
         }
     }
 }

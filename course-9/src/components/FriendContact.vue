@@ -21,15 +21,11 @@
 
 <script>
     export default {
+        props: ['friend'],
+       
         data() {
             return{
                 showDetail: false,
-                friend:  {
-                    id: '1',
-                    name: 'pema',
-                    phone: '12121212',
-                    email: 'pema@gmail.com'
-                },
             }
         },
         methods: {

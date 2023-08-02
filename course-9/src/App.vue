@@ -2,9 +2,7 @@
     <section>
         <h2>My Friends</h2>
         <ul>
-           <friend-contact></friend-contact>
-           <friend-contact></friend-contact>
-
+           <friend-contact v-for="friend in friends" :key="friend.id" :friend='friend' ></friend-contact>
         </ul>
     </section>
 </template>

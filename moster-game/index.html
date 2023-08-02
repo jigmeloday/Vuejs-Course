@@ -34,8 +34,9 @@
         <h3 v-if="winner === 'moster' ">You lost!</h3>
         <h3 v-if="winner === 'player'">You won!</h3>
         <h3 v-if="winner === 'draw'">It's a draw!</h3>
+        <button @click="reset()">Start New Game</button>
       </section>
-      <section id="controls">
+      <section id="controls" v-if="!winner">
         <button @click="attackMoster()">ATTACK</button>
         <button :disabled="eligibleForSpecailAttack" @click="specialAttack()">
           SPECIAL ATTACK
@@ -45,7 +46,14 @@
       </section>
       <section id="log" class="container">
         <h2>Battle Log</h2>
-        <ul></ul>
+        <ul v-if="logMessage.length">
+          <li v-for="message in logMessage">
+            <span
+              >{{message.actionBy }} {{message.actionType }}
+              {{message.actionValue}}</span
+            >
+          </li>
+        </ul>
       </section>
     </div>
   </body>

@@ -7,7 +7,8 @@ const app = Vue.createApp({
             mosterHealth: 100,
             playerHealth: 100,
             currentRound: 0,
-            winner: null
+            winner: null,
+            logMessage: [],
         }
     },
     watch: {
@@ -52,43 +53,54 @@ const app = Vue.createApp({
     methods: {
         attackMoster(type) {
             this.currentRound ++;
-            this.mosterHealth -= randomValue(5, 12);
-
+            const health = randomValue(5, 12);
+            this.mosterHealth -= health
             this.attackPlayer();
-            
+            this.addLogMessage('Player', 'attack', health )
         },
         specialAttack() {
             this.currentRound ++;
             const specail = randomValue(12, 20);
             this.mosterHealth -= specail;
-            if(this.mosterHealth - specail >=0 ){
-               
-               } else{
-                this.mosterHealth =0;
-             }
+            this.addLogMessage('Player', 'attack', specail )
+
         },
         attackPlayer() {
-            const health = randomValue(8, 15);
-
-            if(this.playerHealth - health >= 0 ){
-                this.playerHealth -= health;
-               } else{
-                this.playerHealth =0;
-               }
+            const health = randomValue(8, 15)
+            this.playerHealth -= health;
+            this.addLogMessage('Monster', 'attack', health )
+          
         },
         surrender() {
             this.playerHealth = 0;
+            this.winner = 'moster';
+            this.logMessage = []
+
+        },
+        reset() {
+            this.mosterHealth = 100,
+            this.playerHealth = 100,
+            this.winner=null;
+            this.currentRound = 0;
+            this.logMessage = [];
         },
         healPlayer() {
             this.currentRound ++;
-            this.attackPlayer();
             const healedValue = randomValue(8,20);
             if(healedValue+this.playerHealth <=100) {
                 this.playerHealth += healedValue;
+                this.addLogMessage('Player', 'Healed', healedValue )
             } else {
                 this.playerHealth = 100;
             }
-            
+            this.attackPlayer();
+        },
+        addLogMessage(who, what, value) {
+            this.logMessage.unshift({
+                actionBy: who,
+                actionType: what,
+                actionValue: value
+            })
         }
     }
 })

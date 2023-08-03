@@ -1,13 +1,15 @@
 <template>
-  <ul>
-    <stored-resources :resources="storedResource"></stored-resources>
-  </ul>
+  <div>
+    <the-header></the-header>
+    <the-resources></the-resources>
+  </div>
 </template>
 
 <script>
-import StoredResources from './components/learning-resources/StoreResources.vue';
+import TheHeader from './components/layout/TheHeader.vue';
+import TheResources from './components/learning-resources/TheResources.vue';
 export default {
-  components: { StoredResources },
+  components: { TheHeader, TheResources },
   data() {
     return {
       storedResource: [
@@ -25,6 +27,9 @@ export default {
         },
       ],
     };
+  },
+  provide() {
+    return { resources: this.storedResource };
   },
 };
 </script>

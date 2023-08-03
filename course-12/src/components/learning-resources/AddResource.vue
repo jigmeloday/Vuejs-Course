@@ -1,3 +1,7 @@
+<template>
+  <h2>hello</h2>
+</template>
+<style scoped>
 label {
   font-weight: bold;
   display: block;
@@ -23,3 +27,4 @@ textarea:focus {
 .form-control {
   margin: 1rem 0;
 }
+</style>

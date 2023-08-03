@@ -1,22 +1,23 @@
 <template>
   <div>
     <base-card>
-      <base-button @click="toggleTab('stored-resource')"
+      <base-button @click="toggleTab('store-resources')"
         >Stored Resource</base-button
       >
       <base-button @click="toggleTab('add-resource')">Add Resource</base-button>
     </base-card>
-    <store-resources></store-resources>
+    <component :is="currentTab"></component>
   </div>
 </template>
 
 <script>
 import StoreResources from './StoreResources.vue';
+import AddResource from './AddResource.vue';
 export default {
-  components: { StoreResources },
+  components: { StoreResources, AddResource },
   data() {
     return {
-      currentTab: 'stored-resource',
+      currentTab: 'store-resources',
     };
   },
   methods: {

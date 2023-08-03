@@ -28,7 +28,7 @@ button:active {
 .flat {
   background-color: transparent;
   color: #3a0061;
-  border: none;
+  border: 1px solid #3a0061;
 }
 
 .flat:hover,

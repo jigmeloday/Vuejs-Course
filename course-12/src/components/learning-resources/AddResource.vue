@@ -1,7 +1,14 @@
 <template>
   <div>
     <Teleport to="body">
-      <the-error></the-error>
+      <the-error title="Invalid Input" v-if="invalidInput" @close="confirmed">
+        <template #default>
+          <p>Please fill all the fields</p>
+        </template>
+        <template #actions>
+          <base-button @click="confirmed">Ok</base-button>
+        </template>
+      </the-error>
     </Teleport>
     <base-card>
       <form v-on:submit.prevent="submitForm">
@@ -30,17 +37,26 @@
   </div>
 </template>
 <script>
-import TheError from '../layout/TheError.vue';
 export default {
   inject: ['addResource'],
-  components: { TheError },
+  data() {
+    return {
+      invalidInput: false,
+    };
+  },
   methods: {
     submitForm() {
       const title = this.$refs.title.value;
       const description = this.$refs.description.value;
       const link = this.$refs.link.value;
-      if (!title || !description || !link) return;
+      if (!title.trim() || !description.trim() || !link.trim()) {
+        this.invalidInput = true;
+        return;
+      }
       this.addResource(title, description, link);
+    },
+    confirmed() {
+      this.invalidInput = false;
     },
   },
 };

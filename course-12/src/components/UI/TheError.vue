@@ -1,17 +1,36 @@
 <template>
   <div>
+    <div @click="$emit('close')" class="back-drop"></div>
     <dialog open>
       <header>
-        <h2>Error</h2>
+        <slot name="header">
+          <h2>{{ title }}</h2>
+        </slot>
       </header>
       <section>
-        <menu></menu>
+        <slot></slot>
       </section>
+      <menu>
+        <slot name="actions">
+          <base-button @click="$emit('close')">Ok</base-button>
+        </slot>
+      </menu>
     </dialog>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    title: {
+      type: String,
+      required: false,
+    },
+  },
+  emits: ['close'],
+};
+</script>
 <style scoped>
-div {
+.back-drop {
   position: fixed;
   top: 0;
   left: 0;

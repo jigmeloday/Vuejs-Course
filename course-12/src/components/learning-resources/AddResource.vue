@@ -1,6 +1,50 @@
 <template>
-  <h2>hello</h2>
+  <div>
+    <Teleport to="body">
+      <the-error></the-error>
+    </Teleport>
+    <base-card>
+      <form v-on:submit.prevent="submitForm">
+        <div class="form-control">
+          <label>Title</label>
+          <input id="title" name="title" type="text" ref="title" />
+        </div>
+        <div class="form-control">
+          <label>Description</label>
+          <textarea
+            id="description"
+            name="description"
+            rows="3"
+            ref="description"
+          ></textarea>
+        </div>
+        <div class="form-control">
+          <label>Link</label>
+          <input id="link" name="link" type="url" ref="link" />
+        </div>
+        <div>
+          <base-button type="submit"> Add Resource </base-button>
+        </div>
+      </form>
+    </base-card>
+  </div>
 </template>
+<script>
+import TheError from '../layout/TheError.vue';
+export default {
+  inject: ['addResource'],
+  components: { TheError },
+  methods: {
+    submitForm() {
+      const title = this.$refs.title.value;
+      const description = this.$refs.description.value;
+      const link = this.$refs.link.value;
+      if (!title || !description || !link) return;
+      this.addResource(title, description, link);
+    },
+  },
+};
+</script>
 <style scoped>
 label {
   font-weight: bold;

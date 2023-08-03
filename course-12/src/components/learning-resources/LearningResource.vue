@@ -9,7 +9,7 @@
       </header>
       <p>{{ item.description }}</p>
       <nav>
-        <a href="">View Resource</a>
+        <a :href="item.link">View Resource</a>
       </nav>
     </base-card>
   </li>

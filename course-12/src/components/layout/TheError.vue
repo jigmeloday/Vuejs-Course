@@ -1,3 +1,16 @@
+<template>
+  <div>
+    <dialog open>
+      <header>
+        <h2>Error</h2>
+      </header>
+      <section>
+        <menu></menu>
+      </section>
+    </dialog>
+  </div>
+</template>
+<style scoped>
 div {
   position: fixed;
   top: 0;
@@ -50,3 +63,4 @@ menu {
     width: 40rem;
   }
 }
+</style>

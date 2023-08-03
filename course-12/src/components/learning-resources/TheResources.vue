@@ -10,7 +10,9 @@
         >Add Resource</base-button
       >
     </base-card>
-    <component :is="currentTab"></component>
+    <keep-alive>
+      <component :is="currentTab"></component>
+    </keep-alive>
   </div>
 </template>
 
@@ -30,11 +32,42 @@ export default {
   data() {
     return {
       currentTab: 'store-resources',
+      storedResource: [
+        {
+          id: 'official-guide',
+          title: 'Official Guide',
+          description: 'The official Vue.js document',
+          link: 'https://vuejs.org',
+        },
+        {
+          id: 'google',
+          title: 'Google',
+          description: 'Learn to google...',
+          link: 'https://google.org',
+        },
+      ],
+    };
+  },
+  provide() {
+    return {
+      resources: this.storedResource,
+      addResource: this.addNewResource,
     };
   },
   methods: {
     toggleTab(tabName) {
       this.currentTab = tabName;
+    },
+
+    addNewResource(title, description, url) {
+      const newResource = {
+        id: `${new Date().toISOString()}+${Math.random()}`,
+        title,
+        description,
+        url,
+      };
+      this.storedResource.unshift(newResource);
+      this.currentTab = 'store-resources';
     },
   },
 };

@@ -4,7 +4,9 @@
     <button @click='toggleShow'>{{ `${!showDetail? 'Show' : 'Hide'} Details` }}</button>
     <button @click='toggleFav'>{{ `${fav? 'Make' : 'Remove'} Favorite` }}</button>
     <button @click='toggleFollow'>{{!friend.follow ? 'Follow' : 'Unfollow' }}</button>
-
+    <div style="margin-top: 20px;">
+        <button @click="$emit('delete-friend', friend.id)">Delete</button>
+    </div>
     <ul v-if="showDetail">
         <li>
             <strong>
@@ -25,7 +27,7 @@
 <script>
     export default {
         props: ['friend'],
-       
+        emits: [ 'delete-friend' ],
         data() {
             return{
                 showDetail: false,

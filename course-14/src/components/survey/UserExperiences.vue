@@ -41,12 +41,15 @@ export default {
   methods: {
     loadServey() {
       this.isLoading = true;
-      fetch('https://learning-vue-47350-default-rtdb.firebaseio.com/serveys', {
-        method: 'GET',
-        headers: {
-          'Content-type': 'application/json',
-        },
-      })
+      fetch(
+        'https://learning-vue-47350-default-rtdb.firebaseio.com/serveys.json',
+        {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json',
+          },
+        }
+      )
         .then((res) => {
           if (res.ok) {
             return res.json();
